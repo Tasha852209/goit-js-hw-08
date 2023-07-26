@@ -6,6 +6,8 @@ import { galleryItems } from './gallery-items';
 const galleryUl = document.querySelector('.gallery');
 createGallery();
 
+galleryUl.style.listStyle = 'none';
+
 function createGallery() {
   const galleryList = galleryItems.reduce((acc, image) => {
     return (
