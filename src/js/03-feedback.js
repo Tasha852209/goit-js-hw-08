@@ -21,6 +21,9 @@ form.addEventListener('submit', onSubmit);
 
 function onSubmit(event) {
   event.preventDefault();
+  if (!form.elements.email.value || !form.elements.message.value) {
+    return alert('Всі поля повинні бути заповнені');
+  }
   const object = JSON.parse(localStorage.getItem('feedback-form-state'));
   console.log(object);
   localStorage.removeItem('feedback-form-state');
