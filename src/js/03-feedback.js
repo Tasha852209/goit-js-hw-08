@@ -1,19 +1,17 @@
 import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
-let emailValue = '';
-let messageValue = '';
 
 const data = {
-  email: emailValue,
-  message: messageValue,
+  email: '',
+  message: '',
 };
 
 const savedData = JSON.parse(localStorage.getItem('feedback-form-state'));
 window.addEventListener('load', onLoad);
 function onLoad() {
   if (savedData) {
-    emailValue = savedData.email;
-    messageValue = savedData.message;
+    data.email = savedData.email;
+    data.message = savedData.message;
   }
   return;
 }
@@ -21,8 +19,10 @@ function onLoad() {
 form.addEventListener('input', throttle(onInput, 500));
 
 function onInput(event) {
-  emailValue = event.target.value;
-  messageValue = event.target.value;
+  data.email = form.elements.email.value;
+  data.message = event.target.value;
+  console.log(event.target.value);
+  console.log(data);
   localStorage.setItem('feedback-form-state', JSON.stringify(data));
 }
 console.log(data);
